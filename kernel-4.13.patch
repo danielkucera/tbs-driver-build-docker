@@ -1,0 +1,20 @@
+*** v4l/compat.h	Tue Feb  6 09:39:06 2018
+--- v4l/compat.h	Tue Feb  6 09:06:20 2018
+*************** static inline int snd_ctl_enum_info(stru
+*** 840,843 ****
+--- 840,851 ----
+  #define IS_ERR_OR_NULL(ptr) (!(ptr) || IS_ERR_VALUE((unsigned long)(ptr)))
+  #endif
+  
++ #if LINUX_VERSION_CODE >= KERNEL_VERSION(4, 11, 0)
++ #include <linux/sched/signal.h>
++ #endif
++ 
++ #if LINUX_VERSION_CODE > KERNEL_VERSION(4, 8, 0)
++ #define pci_enable_msix(pdev,msix_entries, numvecs) pci_enable_msix_range(pdev,msix_entries,numvecs,numvecs);
++ #endif
++ 
++ #include <linux/uaccess.h>
++
+  #endif /*  _COMPAT_H */
+
