@@ -27,4 +27,3 @@ RUN make -j5
 RUN make install
 RUN tar -cf drivers.tar /lib/modules/$kernel/kernel/  
 
-#CMD ["/usr/bin/mongod", "--config", "/etc/mongodb.conf"] 
